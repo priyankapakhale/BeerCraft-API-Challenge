@@ -20,10 +20,6 @@ const BeersList = (props) => {
     }
   }, [props.beersWithoutImages])
 
-  console.log("without images", props.beersWithoutImages)
-  console.log("images", props.images)
-  console.log("beers", props.beers)
-
   useEffect(() => {
     if (props.beers && props.beers.length) {
       props.getPageBeers(pageNo)

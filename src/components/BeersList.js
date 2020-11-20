@@ -15,16 +15,20 @@ const BeersList = (props) => {
   }, [])
 
   useEffect(() => {
-    if (props.beers && !props.images) {
+    if (props.beersWithoutImages) {
       props.getBeerImages()
     }
-  }, [props.beers])
+  }, [props.beersWithoutImages])
+
+  console.log("without images", props.beersWithoutImages)
+  console.log("images", props.images)
+  console.log("beers", props.beers)
 
   useEffect(() => {
-    if (props.images) {
+    if (props.beers && props.beers.length) {
       props.getPageBeers(pageNo)
     }
-  }, [props.images, pageNo, props.beers])
+  }, [pageNo, props.beers])
 
   return (
     <div className="container-fluid p-5">
@@ -51,6 +55,7 @@ const BeersList = (props) => {
 
 const mapStateToProps = storeState => {
   return {
+    beersWithoutImages: storeState.beersWithoutImages, 
     beers: storeState.beers,
     images: storeState.images,
     pageBeers: storeState.pageBeers,

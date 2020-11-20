@@ -19,7 +19,7 @@ const reducer = (state = {}, action) => {
       }
     case SET_BEER_IMAGES:
       const numImages = payload.length
-      const updatedBeers = state.beers.map((beer, index) => ({ ...beer, image: payload[index % numImages].image }))
+      const updatedBeers = state.beersWithoutImages.map((beer, index) => ({ ...beer, image: payload[index % numImages].image }))
       return {
         ...state,
         originalImages: [...payload],
@@ -28,9 +28,10 @@ const reducer = (state = {}, action) => {
         images: [...payload],
         pageCount: Math.ceil(updatedBeers.length / 20)
       }
-    case SET_ALL_BEERS: return {
+    case SET_ALL_BEERS: 
+    return {
       ...state,
-      beers: [...payload]
+      beersWithoutImages: [...payload]
     }
     case TOGGLE_IS_LOADING: return {
       ...state,
